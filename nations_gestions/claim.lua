@@ -138,6 +138,11 @@ local function dist2(a, b)
 end
 local function start_delayed_teleport(player, target_pos)
     local pname = player:get_player_name()
+    if minetest.check_player_privs(pname, {server = true}) then
+        player:set_pos(target_pos)
+        minetest.chat_send_player(pname, "[NATIONS] Téléportation instantanée (admin).")
+        return
+    end
     if pending_teleports[pname] then
         minetest.chat_send_player(pname, "[NATIONS] Téléportation déjà en cours.")
         return
@@ -150,7 +155,8 @@ local function start_delayed_teleport(player, target_pos)
         start_pos = { x = pos.x, y = pos.y, z = pos.z },
         start_hp = hp
     }
-    minetest.chat_send_player(pname, "[NATIONS] Téléportation dans " .. TELEPORT_DELAY .. "s. Ne bouge pas.")
+    minetest.chat_send_player(pname,
+        "[NATIONS] Téléportation dans " .. TELEPORT_DELAY .. " secondes... Ne bouge pas.")
 end
 local function cancel_delayed_teleport(pname, reason)
     if not pending_teleports[pname] then return end
