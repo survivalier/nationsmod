@@ -1,2 +1,15 @@
 # nations_mod
-# nations_mod
+---
+## title
+Nations Modpack
+## name
+nationsmods
+## author
+Survivalier
+## version
+1.0
+## description
+Found nations, with a complete modpack dedicated to managing banks, skins, and protecting territories.
+---
+# License
+MIT
