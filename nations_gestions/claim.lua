@@ -336,20 +336,32 @@ minetest.register_chatcommand("f", {
             if save_nations_home then save_nations_home() end
             return true, "[NATIONS] Le home de la nation « " .. nation_color(nation) .. " » a été défini."
         end
-        if cmd == "home" then
-            local nation = player_nation[name]
-            if not nation then
-                return false, "[NATIONS] Tu dois appartenir à une nation."
-            end
-            local home = nations_home and nations_home[nation]
-            if not home then
-                return false, "[NATIONS] Aucun home n'a été défini pour ta nation."
-            end
-            local player = minetest.get_player_by_name(name)
-            if not player then return false end
-            start_delayed_teleport(player, home)
-            return true, "[NATIONS] Téléportation en cours..."
+if cmd == "home" then
+    local target_nation
+    if rest ~= "" then
+        target_nation = rest
+        if not nations[target_nation] then
+            return false, "[NATIONS] Cette nation n'existe pas."
         end
+    else
+        target_nation = player_nation[name]
+        if not target_nation then
+            return false, "[NATIONS] Tu dois appartenir à une nation."
+        end
+    end
+    local home = nations_home[target_nation]
+    if not home then
+        return false, "[NATIONS] Aucun home n'a été défini pour la nation « " .. nation_color(target_nation) .. " »."
+    end
+    local player = minetest.get_player_by_name(name)
+    if not player then return false end
+    if minetest.check_player_privs(name, {server = true}) then
+        player:set_pos(home)
+        return true, "[NATIONS] Téléportation instantanée vers la nation « " .. nation_color(target_nation) .. " »."
+    end
+    start_delayed_teleport(player, home)
+    return true, "[NATIONS] Téléportation en cours vers la nation « " .. nation_color(target_nation) .. " »..."
+end
         return false, "Paramètre inconnu. Utilise " ..
             command_color("/f claim") .. ", " ..
             command_color("/f unclaim") .. ", " ..

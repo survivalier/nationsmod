@@ -1,17 +1,10 @@
 local worldpath = minetest.get_worldpath()
 local spawn_file = worldpath .. "/nations_spawn.json"
-
--- Spawn par défaut
 local server_spawn = {x = 0, y = 10, z = 0}
-
-------------------------------------------------------------
--- Chargement du spawn
-------------------------------------------------------------
 local f = io.open(spawn_file, "r")
 if f then
     local raw = f:read("*a")
     f:close()
-
     local data = minetest.parse_json(raw)
     if data and data.x and data.y and data.z then
         server_spawn = data
@@ -23,10 +16,6 @@ if f then
 else
     minetest.log("action", "[nations_server] Aucun fichier de spawn, spawn par défaut utilisé.")
 end
-
-------------------------------------------------------------
--- Sauvegarde du spawn
-------------------------------------------------------------
 local function save_spawn()
     local f = io.open(spawn_file, "w")
     if f then
@@ -36,41 +25,25 @@ local function save_spawn()
             minetest.pos_to_string(server_spawn))
     end
 end
-
-------------------------------------------------------------
--- Téléportation automatique au spawn dès qu'on rejoint
-------------------------------------------------------------
 minetest.register_on_joinplayer(function(player)
     player:set_pos(server_spawn)
     minetest.chat_send_player(player:get_player_name(),
         "[SERVER] Téléportation automatique au spawn.")
 end)
-
-------------------------------------------------------------
--- Téléportation instant pour les admins
-------------------------------------------------------------
 local function instant_spawn(player)
     player:set_pos(server_spawn)
     minetest.chat_send_player(player:get_player_name(),
         "[SERVER] Téléportation instantanée (admin).")
 end
-
-------------------------------------------------------------
--- Téléportation avec délai pour les joueurs normaux
-------------------------------------------------------------
 local function delayed_spawn(player)
     local name = player:get_player_name()
     local start_pos = vector.round(player:get_pos())
-
     minetest.chat_send_player(name,
         "[SERVER] Téléportation au spawn dans 5 secondes... Ne bouge pas.")
-
     minetest.after(5, function()
         local p = minetest.get_player_by_name(name)
         if not p then return end
-
         local current_pos = vector.round(p:get_pos())
-
         if current_pos.x ~= start_pos.x
         or current_pos.y ~= start_pos.y
         or current_pos.z ~= start_pos.z then
@@ -78,16 +51,11 @@ local function delayed_spawn(player)
                 "[SERVER] Téléportation annulée, tu as bougé.")
             return
         end
-
         p:set_pos(server_spawn)
         minetest.chat_send_player(name,
             "[SERVER] Téléportation effectuée.")
     end)
 end
-
-------------------------------------------------------------
--- Commande /spawn
-------------------------------------------------------------
 minetest.register_chatcommand("spawn", {
     description = "Se téléporter au spawn du serveur",
     privs = { interact = true },
@@ -96,20 +64,14 @@ minetest.register_chatcommand("spawn", {
         if not player then
             return false, "Erreur interne."
         end
-
         if minetest.check_player_privs(name, {server = true}) then
             instant_spawn(player)
         else
             delayed_spawn(player)
         end
-
         return true, "Téléportation en cours..."
     end
 })
-
-------------------------------------------------------------
--- Commande /s setspawn
-------------------------------------------------------------
 minetest.register_chatcommand("s", {
     params = "setspawn",
     description = "Définir le spawn du serveur",
@@ -118,15 +80,12 @@ minetest.register_chatcommand("s", {
         if param ~= "setspawn" then
             return false, "Utilisation : /s setspawn"
         end
-
         local player = minetest.get_player_by_name(name)
         if not player then
             return false, "Erreur interne."
         end
-
         server_spawn = vector.round(player:get_pos())
         save_spawn()
-
         return true, "Spawn du serveur défini à ta position."
     end
 })
