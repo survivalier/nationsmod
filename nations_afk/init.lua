@@ -26,6 +26,7 @@ minetest.register_globalstep(function(dtime)
 
         local pos_hash = get_pos_hash(player:get_pos())
 
+        -- Si le joueur bouge → reset complet
         if pos_hash ~= data.last_pos then
             data.last_pos = pos_hash
             data.last_move_time = os.time()
@@ -34,10 +35,20 @@ minetest.register_globalstep(function(dtime)
         else
             local idle = os.time() - data.last_move_time
 
+            -- 5 minutes sans bouger → avertissement + son
             if idle >= 300 and not data.warned then
                 minetest.chat_send_player(name, "[AFK] Tu sembles AFK. Utilise /afk dans les 30 secondes pour éviter d'être kick.")
+
+                minetest.sound_play("alert", {
+                    to_player = name,
+                    gain = 1.0,
+                    pitch = 1.0
+                })
+
                 data.warned = true
                 data.warn_time = os.time()
+
+            -- 30 secondes après l'avertissement → kick
             elseif data.warned and (os.time() - data.warn_time >= 30) then
                 minetest.kick_player(name, "AFK interdit sur ce serveur.")
             end
@@ -53,9 +64,11 @@ minetest.register_chatcommand("afk", {
     func = function(name)
         local data = afk_data[name]
         if not data then return false, "Erreur interne." end
+
         data.last_move_time = os.time()
         data.warned = false
         data.warn_time = 0
+
         return true, "[AFK] Compteur relancé."
     end
 })
