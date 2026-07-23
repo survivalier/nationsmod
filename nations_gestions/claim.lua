@@ -40,6 +40,7 @@ local function load_claims()
     local data = f:read("*a")
     f:close()
     claims = minetest.parse_json(data) or {}
+    nations_gestions.claims = claims
 end
 load_claims()
 local function get_chunk(pos)
