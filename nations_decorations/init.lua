@@ -210,6 +210,28 @@ minetest.register_node("nations_decorations:carpet_red_b", {
         }
     },
 })
+minetest.register_node("nations_decorations:carpet_red_c", {
+    description = "Tapis Rouge",
+    tiles = {"carpet_red_c.png"},
+    drawtype = "mesh",
+    mesh = "carpet_c.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = {
+            { -0.5, -0.5, -0.5, 0.5, -0.375, 0.5 }
+        }
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = {
+            { -0.5, -0.5, -0.5, 0.5, -0.375, 0.5 }
+        }
+    },
+})
 minetest.register_node("nations_decorations:carpet_blue", {
     description = "Tapis Bleu",
     tiles = {"carpet_blue.png"},
