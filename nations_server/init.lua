@@ -1,10 +1,11 @@
 local worldpath = minetest.get_worldpath()
 local spawn_file = worldpath .. "/nations_spawn.json"
 
+-- Spawn par défaut
 local server_spawn = {x = 0, y = 10, z = 0}
 
 ------------------------------------------------------------
--- Chargement du spawn AVANT tout
+-- Chargement du spawn
 ------------------------------------------------------------
 local f = io.open(spawn_file, "r")
 if f then
@@ -17,10 +18,10 @@ if f then
         minetest.log("action", "[nations_server] Spawn chargé : " ..
             minetest.pos_to_string(server_spawn))
     else
-        minetest.log("error", "[nations_server] Fichier spawn invalide, utilisation du spawn par défaut.")
+        minetest.log("error", "[nations_server] Fichier spawn invalide, spawn par défaut utilisé.")
     end
 else
-    minetest.log("action", "[nations_server] Aucun fichier de spawn, utilisation du spawn par défaut.")
+    minetest.log("action", "[nations_server] Aucun fichier de spawn, spawn par défaut utilisé.")
 end
 
 ------------------------------------------------------------
@@ -37,12 +38,12 @@ local function save_spawn()
 end
 
 ------------------------------------------------------------
--- Téléportation des nouveaux joueurs
+-- Téléportation automatique au spawn dès qu'on rejoint
 ------------------------------------------------------------
-minetest.register_on_newplayer(function(player)
+minetest.register_on_joinplayer(function(player)
     player:set_pos(server_spawn)
     minetest.chat_send_player(player:get_player_name(),
-        "[SERVER] Bienvenue ! Tu as été téléporté au spawn.")
+        "[SERVER] Téléportation automatique au spawn.")
 end)
 
 ------------------------------------------------------------
