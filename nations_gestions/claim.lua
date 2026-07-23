@@ -1,11 +1,24 @@
 local nations = nations_gestions.nations
 local player_nation = nations_gestions.player_nation
-local claims = nations_gestions.claims
-local claims_file = nations_gestions.claims_file
-local save_claims = nations_gestions.save_claims
-local nations_home = nations_gestions.nations_home
-local save_nations_home = nations_gestions.save_nations_home
+local claims = nations_gestions.claims or {}
 local worldpath = minetest.get_worldpath()
+local claims_file = nations_gestions.claims_file or (worldpath .. "/nations_claims.json")
+local save_claims = nations_gestions.save_claims
+if not save_claims then
+    save_claims = function()
+        local f = io.open(claims_file, "w")
+        if f then
+            f:write(minetest.write_json(claims))
+            f:close()
+        else
+            minetest.log("error", "[nations_gestions] Impossible d'ouvrir " .. claims_file .. " en écriture.")
+        end
+        nations_gestions.claims = claims
+    end
+    nations_gestions.save_claims = save_claims
+end
+local nations_home = nations_gestions.nations_home or {}
+local save_nations_home = nations_gestions.save_nations_home
 local bans_file = worldpath .. "/nations_bans.json"
 local bans = {}
 local invites = {}
@@ -15,7 +28,7 @@ local show_claims = {}
 local pending_teleports = {}
 local TELEPORT_DELAY = 5
 local MOVE_TOLERANCE = 0.25
-local VELOCITY_TOLERANCE = 0.2 
+local VELOCITY_TOLERANCE = 0.2
 local function player_color(name) return minetest.colorize("#ff4040", name) end
 local function nation_color(name) return minetest.colorize("#ff9900", name) end
 local function command_color(cmd) return minetest.colorize("#55cfff", cmd) end
@@ -32,11 +45,17 @@ local function save_bans()
     if f then
         f:write(minetest.write_json(bans))
         f:close()
+    else
+        minetest.log("error", "[nations_gestions] Impossible d'écrire " .. bans_file)
     end
 end
 local function load_claims()
     local f = io.open(claims_file, "r")
-    if not f then return end
+    if not f then
+        claims = claims or {}
+        nations_gestions.claims = claims
+        return
+    end
     local data = f:read("*a")
     f:close()
     claims = minetest.parse_json(data) or {}
@@ -337,32 +356,32 @@ minetest.register_chatcommand("f", {
             if save_nations_home then save_nations_home() end
             return true, "[NATIONS] Le home de la nation « " .. nation_color(nation) .. " » a été défini."
         end
-if cmd == "home" then
-    local target_nation
-    if rest ~= "" then
-        target_nation = rest
-        if not nations[target_nation] then
-            return false, "[NATIONS] Cette nation n'existe pas."
+        if cmd == "home" then
+            local target_nation
+            if rest ~= "" then
+                target_nation = rest
+                if not nations[target_nation] then
+                    return false, "[NATIONS] Cette nation n'existe pas."
+                end
+            else
+                target_nation = player_nation[name]
+                if not target_nation then
+                    return false, "[NATIONS] Tu dois appartenir à une nation."
+                end
+            end
+            local home = nations_home[target_nation]
+            if not home then
+                return false, "[NATIONS] Aucun home n'a été défini pour la nation « " .. nation_color(target_nation) .. " »."
+            end
+            local player = minetest.get_player_by_name(name)
+            if not player then return false end
+            if minetest.check_player_privs(name, {server = true}) then
+                player:set_pos(home)
+                return true, "[NATIONS] Téléportation instantanée vers la nation « " .. nation_color(target_nation) .. " »."
+            end
+            start_delayed_teleport(player, home)
+            return true, "[NATIONS] Téléportation en cours vers la nation « " .. nation_color(target_nation) .. " »..."
         end
-    else
-        target_nation = player_nation[name]
-        if not target_nation then
-            return false, "[NATIONS] Tu dois appartenir à une nation."
-        end
-    end
-    local home = nations_home[target_nation]
-    if not home then
-        return false, "[NATIONS] Aucun home n'a été défini pour la nation « " .. nation_color(target_nation) .. " »."
-    end
-    local player = minetest.get_player_by_name(name)
-    if not player then return false end
-    if minetest.check_player_privs(name, {server = true}) then
-        player:set_pos(home)
-        return true, "[NATIONS] Téléportation instantanée vers la nation « " .. nation_color(target_nation) .. " »."
-    end
-    start_delayed_teleport(player, home)
-    return true, "[NATIONS] Téléportation en cours vers la nation « " .. nation_color(target_nation) .. " »..."
-end
         return false, "Paramètre inconnu. Utilise " ..
             command_color("/f claim") .. ", " ..
             command_color("/f unclaim") .. ", " ..
@@ -376,9 +395,7 @@ end
 local _orig_is_protected = minetest.is_protected
 minetest.is_protected = function(pos, name)
     if not name then
-        if _orig_is_protected then
-            return _orig_is_protected(pos, name)
-        end
+        if _orig_is_protected then return _orig_is_protected(pos, name) end
         return false
     end
     if minetest.check_player_privs(name, {server = true}) then
@@ -387,18 +404,10 @@ minetest.is_protected = function(pos, name)
     local cx, cz = get_chunk(pos)
     local key = cx .. "," .. cz
     local nation = claims[key]
-    if not nation then
-        return false
-    end
-    if is_banned_from_chunk(name, cx, cz) then
-        return true
-    end
-    if player_nation[name] == nation then
-        return false
-    end
-    if invites[nation] and invites[nation][name] then
-        return false
-    end
+    if not nation then return false end
+    if is_banned_from_chunk(name, cx, cz) then return true end
+    if player_nation[name] == nation then return false end
+    if invites[nation] and invites[nation][name] then return false end
     return true
 end
 minetest.register_on_protection_violation(function(pos, name)
@@ -459,6 +468,7 @@ local function chest_open_allowed(clicker, pos)
     if not nation then return true end
     if is_banned_from_chunk(pname, cx, cz) then return false end
     if player_nation[pname] == nation then return true end
+    if invites[nation] and invites[nation][pname] then return true end
     return false
 end
 local chest_nodes = {
@@ -572,3 +582,5 @@ nations_gestions.invites = invites
 nations_gestions.player_invite = player_invite
 nations_gestions.invite_player_to_nation = invite_player_to_nation
 nations_gestions.uninvite_player_from_nation = uninvite_player_from_nation
+nations_gestions.claims = claims
+nations_gestions.save_claims = save_claims
