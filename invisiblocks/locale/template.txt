@@ -1,0 +1,11 @@
+# textdomain: invisiblocks
+
+# ContentDB
+
+Invisiblocks=
+Add invisible barrier, light and mob wall into game=
+
+# Nodes
+Barrier Block=
+Light Source=
+Mob Wall=
