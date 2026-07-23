@@ -1,6 +1,6 @@
 local modname = minetest.get_current_modname()
 minetest.register_node(modname .. ":portal", {
-    description = "Portail magique",
+    description = "Portail",
     drawtype = "mesh",
     mesh = "portal.obj",
     tiles = { "portal.png" },
