@@ -375,16 +375,29 @@ end
 local _orig_is_protected = minetest.is_protected
 minetest.is_protected = function(pos, name)
     if not name then
-        if _orig_is_protected then return _orig_is_protected(pos, name) end
+        if _orig_is_protected then
+            return _orig_is_protected(pos, name)
+        end
+        return false
+    end
+    if minetest.check_player_privs(name, {server = true}) then
         return false
     end
     local cx, cz = get_chunk(pos)
     local key = cx .. "," .. cz
     local nation = claims[key]
-    if not nation then return false end
-    if is_banned_from_chunk(name, cx, cz) then return true end
-    if player_nation[name] == nation then return false end
-    if invites[nation] and invites[nation][name] then return false end
+    if not nation then
+        return false
+    end
+    if is_banned_from_chunk(name, cx, cz) then
+        return true
+    end
+    if player_nation[name] == nation then
+        return false
+    end
+    if invites[nation] and invites[nation][name] then
+        return false
+    end
     return true
 end
 minetest.register_on_protection_violation(function(pos, name)
