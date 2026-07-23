@@ -3,39 +3,60 @@ local spawn_file = worldpath .. "/nations_spawn.json"
 
 local server_spawn = {x = 0, y = 10, z = 0}
 
--- Chargement du spawn si le fichier existe
+------------------------------------------------------------
+-- Chargement du spawn AVANT tout
+------------------------------------------------------------
 local f = io.open(spawn_file, "r")
 if f then
-    local data = minetest.parse_json(f:read("*a"))
+    local raw = f:read("*a")
     f:close()
-    if data and data.x then
+
+    local data = minetest.parse_json(raw)
+    if data and data.x and data.y and data.z then
         server_spawn = data
+        minetest.log("action", "[nations_server] Spawn chargé : " ..
+            minetest.pos_to_string(server_spawn))
+    else
+        minetest.log("error", "[nations_server] Fichier spawn invalide, utilisation du spawn par défaut.")
     end
+else
+    minetest.log("action", "[nations_server] Aucun fichier de spawn, utilisation du spawn par défaut.")
 end
 
+------------------------------------------------------------
+-- Sauvegarde du spawn
+------------------------------------------------------------
 local function save_spawn()
     local f = io.open(spawn_file, "w")
     if f then
         f:write(minetest.write_json(server_spawn))
         f:close()
+        minetest.log("action", "[nations_server] Spawn sauvegardé : " ..
+            minetest.pos_to_string(server_spawn))
     end
 end
 
+------------------------------------------------------------
 -- Téléportation des nouveaux joueurs
+------------------------------------------------------------
 minetest.register_on_newplayer(function(player)
     player:set_pos(server_spawn)
     minetest.chat_send_player(player:get_player_name(),
         "[SERVER] Bienvenue ! Tu as été téléporté au spawn.")
 end)
 
--- Téléportation instantanée pour les admins
+------------------------------------------------------------
+-- Téléportation instant pour les admins
+------------------------------------------------------------
 local function instant_spawn(player)
     player:set_pos(server_spawn)
     minetest.chat_send_player(player:get_player_name(),
         "[SERVER] Téléportation instantanée (admin).")
 end
 
--- Téléportation avec attente de 5 secondes sans bouger
+------------------------------------------------------------
+-- Téléportation avec délai pour les joueurs normaux
+------------------------------------------------------------
 local function delayed_spawn(player)
     local name = player:get_player_name()
     local start_pos = vector.round(player:get_pos())
@@ -49,7 +70,6 @@ local function delayed_spawn(player)
 
         local current_pos = vector.round(p:get_pos())
 
-        -- Si le joueur a bougé → annulation
         if current_pos.x ~= start_pos.x
         or current_pos.y ~= start_pos.y
         or current_pos.z ~= start_pos.z then
@@ -58,14 +78,15 @@ local function delayed_spawn(player)
             return
         end
 
-        -- Téléportation
         p:set_pos(server_spawn)
         minetest.chat_send_player(name,
             "[SERVER] Téléportation effectuée.")
     end)
 end
 
+------------------------------------------------------------
 -- Commande /spawn
+------------------------------------------------------------
 minetest.register_chatcommand("spawn", {
     description = "Se téléporter au spawn du serveur",
     privs = { interact = true },
@@ -75,7 +96,6 @@ minetest.register_chatcommand("spawn", {
             return false, "Erreur interne."
         end
 
-        -- Si le joueur a le privilège server → téléportation instant
         if minetest.check_player_privs(name, {server = true}) then
             instant_spawn(player)
         else
@@ -86,7 +106,9 @@ minetest.register_chatcommand("spawn", {
     end
 })
 
+------------------------------------------------------------
 -- Commande /s setspawn
+------------------------------------------------------------
 minetest.register_chatcommand("s", {
     params = "setspawn",
     description = "Définir le spawn du serveur",
@@ -101,7 +123,7 @@ minetest.register_chatcommand("s", {
             return false, "Erreur interne."
         end
 
-        server_spawn = player:get_pos()
+        server_spawn = vector.round(player:get_pos())
         save_spawn()
 
         return true, "Spawn du serveur défini à ta position."
