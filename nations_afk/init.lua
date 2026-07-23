@@ -9,7 +9,8 @@ minetest.register_on_joinplayer(function(player)
     afk_data[name] = {
         last_pos = get_pos_hash(player:get_pos()),
         last_move_time = os.time(),
-        warned = false
+        warned = false,
+        warn_time = 0
     }
 end)
 
@@ -29,13 +30,15 @@ minetest.register_globalstep(function(dtime)
             data.last_pos = pos_hash
             data.last_move_time = os.time()
             data.warned = false
+            data.warn_time = 0
         else
             local idle = os.time() - data.last_move_time
 
-            if idle >= 10 and not data.warned then
-                minetest.chat_send_player(name, "[AFK] Tu sembles AFK. Utilise /afk pour relancer le compteur.")
+            if idle >= 300 and not data.warned then
+                minetest.chat_send_player(name, "[AFK] Tu sembles AFK. Utilise /afk dans les 30 secondes pour éviter d'être kick.")
                 data.warned = true
-            elseif idle >= 20 and data.warned then
+                data.warn_time = os.time()
+            elseif data.warned and (os.time() - data.warn_time >= 30) then
                 minetest.kick_player(name, "AFK interdit sur ce serveur.")
             end
         end
@@ -52,6 +55,7 @@ minetest.register_chatcommand("afk", {
         if not data then return false, "Erreur interne." end
         data.last_move_time = os.time()
         data.warned = false
+        data.warn_time = 0
         return true, "[AFK] Compteur relancé."
     end
 })
