@@ -1,7 +1,7 @@
 local DEFAULT_PRICE = 7
 local CUSTOM_PRICES = {
     -- Exemple :
-    -- ["default:stone"] = 5,
+    ["default:stone"] = 5,
     -- ["default:dirt"]  = 3,
 }
 local function bank_get_balance(name)
