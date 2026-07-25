@@ -382,3 +382,39 @@ minetest.register_node("nations_decorations:coins_gold", {
         fixed = { -0.5, -0.5, -0.5, 0.5, -0.25, 0.5 }
     },
 })
+minetest.register_node("nations_decorations:half_tinbering", {
+    description = "Colombage",
+    tiles = {"half-tinbering.png"},
+    drawtype = "node",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+})
+minetest.register_node("nations_decorations:half_tinbering_a", {
+    description = "Colombage",
+    tiles = {"half-tinbering_a.png"},
+    drawtype = "node",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+})
+minetest.register_node("nations_decorations:half_tinbering_b", {
+    description = "Colombage",
+    tiles = {"half-tinbering_b.png"},
+    drawtype = "node",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+})
+minetest.register_node("nations_decorations:half_tinbering_c", {
+    description = "Colombage",
+    tiles = {"half-tinbering_c.png"},
+    drawtype = "node",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+})
