@@ -58,3 +58,51 @@ minetest.register_tool("nations_stuff:shovel", {
         damage_groups = {fleshy = 1},
     },
 })
+local MODNAME = minetest.get_current_modname()
+local START_SLOTS = {
+    [1] = { item = "nations_stuff:sword",      count = 1 },
+    [2] = { item = "nations_stuff:pickaxe",       count = 1 },
+    [3] = { item = "nations_stuff:axe",    count = 1 },
+    [4] = { item = "nations_stuff:shovel",     count = 1 },
+    [5] = { item = "default:torch",           count = 16 },
+}
+local function give_start_stuff(player)
+    if not player then return end
+    local inv = player:get_inventory()
+    if not inv then return end
+    for slot, def in pairs(START_SLOTS) do
+        if def.item and def.count and def.count > 0 then
+            local stack = ItemStack(def.item .. " " .. def.count)
+            inv:add_item("main", stack)
+        end
+    end
+end
+minetest.register_on_joinplayer(function(player)
+    if not player then return end
+    local meta = player:get_meta()
+    local flag = meta:get_string("nationsmods_first_join")
+    if flag == "" then
+        give_start_stuff(player)
+        meta:set_string("nationsmods_first_join", "1")
+        minetest.chat_send_player(
+            player:get_player_name(),
+            "[NATIONS] Stuff de départ reçu."
+        )
+    end
+end)
+minetest.register_chatcommand("stuff", {
+    params = "<pseudo>",
+    description = "Donner le stuff de départ Nations Mods à un joueur",
+    privs = { server = true },
+    func = function(name, param)
+        if param == "" then
+            return false, "Utilisation : /nationsmods_givestuff <pseudo>"
+        end
+        local target = minetest.get_player_by_name(param)
+        if not target then
+            return false, "Joueur introuvable."
+        end
+        give_start_stuff(target)
+        return true, "[NATIONS MODS] Stuff de départ donné à " .. param .. "."
+    end
+})
