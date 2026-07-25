@@ -73,7 +73,7 @@ local function give_start_stuff(player)
     for slot, def in pairs(START_SLOTS) do
         if def.item and def.count and def.count > 0 then
             local stack = ItemStack(def.item .. " " .. def.count)
-            inv:add_item("main", stack)
+            inv:set_stack("main", slot, stack)
         end
     end
 end
