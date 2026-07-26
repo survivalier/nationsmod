@@ -1,5 +1,5 @@
 minetest.register_node("nations_flag:flag_red", {
-    description = "Drapeau Rouge",
+    description = "Drapeau rouge",
     tiles = {"flag.png^flag_red.png"},
     drawtype = "mesh",
     mesh = "flag.obj",
@@ -17,7 +17,7 @@ minetest.register_node("nations_flag:flag_red", {
     },
 })
 minetest.register_node("nations_flag:flag_blue", {
-    description = "Drapeau Bleu",
+    description = "Drapeau bleu",
     tiles = {"flag.png^flag_blue.png"},
     drawtype = "mesh",
     mesh = "flag.obj",
@@ -35,7 +35,7 @@ minetest.register_node("nations_flag:flag_blue", {
     },
 })
 minetest.register_node("nations_flag:flag_yellow", {
-    description = "Drapeau Jaune",
+    description = "Drapeau jaune",
     tiles = {"flag.png^flag_yellow.png"},
     drawtype = "mesh",
     mesh = "flag.obj",
@@ -53,7 +53,7 @@ minetest.register_node("nations_flag:flag_yellow", {
     },
 })
 minetest.register_node("nations_flag:wall_red", {
-    description = "Drapeau Rouge",
+    description = "Drapeau murale rouge",
     tiles = {"flag_wall.png^flag_wall_red.png"},
     drawtype = "mesh",
     mesh = "flag_wall.obj",
@@ -71,7 +71,7 @@ minetest.register_node("nations_flag:wall_red", {
     },
 })
 minetest.register_node("nations_flag:wall_blue", {
-    description = "Drapeau Bleu",
+    description = "Drapeau murale bleu",
     tiles = {"flag_wall.png^flag_wall_blue.png"},
     drawtype = "mesh",
     mesh = "flag_wall.obj",
@@ -89,7 +89,7 @@ minetest.register_node("nations_flag:wall_blue", {
     },
 })
 minetest.register_node("nations_flag:wall_yellow", {
-    description = "Drapeau Jaune",
+    description = "Drapeau murale jaune",
     tiles = {"flag_wall.png^flag_wall_yellow.png"},
     drawtype = "mesh",
     mesh = "flag_wall.obj",
@@ -107,7 +107,7 @@ minetest.register_node("nations_flag:wall_yellow", {
     },
 })
 minetest.register_node("nations_flag:floor_red", {
-    description = "Drapeau Rouge",
+    description = "Drapeau sur pied rouge",
     tiles = {"flag_floor.png^flag_floor_red.png"},
     drawtype = "mesh",
     mesh = "flag_floor.obj",
@@ -125,7 +125,7 @@ minetest.register_node("nations_flag:floor_red", {
     },
 })
 minetest.register_node("nations_flag:floor_red_b", {
-    description = "Drapeau Rouge",
+    description = "Double drapeau sur pied rouge",
     tiles = {"flag_floor.png^flag_floor_red.png"},
     drawtype = "mesh",
     mesh = "flag_floor_b.obj",
@@ -143,7 +143,7 @@ minetest.register_node("nations_flag:floor_red_b", {
     },
 })
 minetest.register_node("nations_flag:floor_blue", {
-    description = "Drapeau Bleu",
+    description = "Drapeau sur pied Bleu",
     tiles = {"flag_floor.png^flag_floor_blue.png"},
     drawtype = "mesh",
     mesh = "flag_floor.obj",
@@ -161,7 +161,7 @@ minetest.register_node("nations_flag:floor_blue", {
     },
 })
 minetest.register_node("nations_flag:floor_blue_b", {
-    description = "Drapeau Bleu",
+    description = "Double drapeau sur pied bleu",
     tiles = {"flag_floor.png^flag_floor_blue.png"},
     drawtype = "mesh",
     mesh = "flag_floor_b.obj",
@@ -179,7 +179,7 @@ minetest.register_node("nations_flag:floor_blue_b", {
     },
 })
 minetest.register_node("nations_flag:floor_yellow", {
-    description = "Drapeau Jaune",
+    description = "Drapeau sur pied jaune",
     tiles = {"flag_floor.png^flag_floor_yellow.png"},
     drawtype = "mesh",
     mesh = "flag_floor.obj",
@@ -197,7 +197,7 @@ minetest.register_node("nations_flag:floor_yellow", {
     },
 })
 minetest.register_node("nations_flag:floor_yellow_b", {
-    description = "Drapeau Jaune",
+    description = "Double drapeau sur pied Jaune",
     tiles = {"flag_floor.png^flag_floor_yellow.png"},
     drawtype = "mesh",
     mesh = "flag_floor_b.obj",
