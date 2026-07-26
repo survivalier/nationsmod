@@ -124,6 +124,24 @@ minetest.register_node("nations_flag:floor_red", {
         fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
     },
 })
+minetest.register_node("nations_flag:floor_red_b", {
+    description = "Drapeau Rouge",
+    tiles = {"flag_floor.png^flag_floor_red.png"},
+    drawtype = "mesh",
+    mesh = "flag_floor_b.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+    },
+})
 minetest.register_node("nations_flag:floor_blue", {
     description = "Drapeau Bleu",
     tiles = {"flag_floor.png^flag_floor_blue.png"},
@@ -142,11 +160,47 @@ minetest.register_node("nations_flag:floor_blue", {
         fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
     },
 })
+minetest.register_node("nations_flag:floor_blue_b", {
+    description = "Drapeau Bleu",
+    tiles = {"flag_floor.png^flag_floor_blue.png"},
+    drawtype = "mesh",
+    mesh = "flag_floor_b.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+    },
+})
 minetest.register_node("nations_flag:floor_yellow", {
     description = "Drapeau Jaune",
     tiles = {"flag_floor.png^flag_floor_yellow.png"},
     drawtype = "mesh",
     mesh = "flag_floor.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+    },
+})
+minetest.register_node("nations_flag:floor_yellow_b", {
+    description = "Drapeau Jaune",
+    tiles = {"flag_floor.png^flag_floor_yellow.png"},
+    drawtype = "mesh",
+    mesh = "flag_floor_b.obj",
     use_texture_alpha = "blend",
     paramtype = "light",
     paramtype2 = "facedir",
