@@ -88,7 +88,7 @@ minetest.register_node("nations_decorations:logo", {
         fixed = {-0.5, -0.5, 0.4, 0.5, 0.5, 0.5},
     },
 })
-minetest.register_node("nations_decorations:logo", {
+minetest.register_node("nations_decorations:logo_b", {
     description = "Nations Logo",
     tiles = {"nations_gold.png"},
     drawtype = "mesh",
