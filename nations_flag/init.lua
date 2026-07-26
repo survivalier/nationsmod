@@ -117,11 +117,11 @@ minetest.register_node("nations_flag:floor_red", {
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
     selection_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
     collision_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
 })
 minetest.register_node("nations_flag:floor_red_b", {
@@ -135,11 +135,11 @@ minetest.register_node("nations_flag:floor_red_b", {
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
     selection_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
     collision_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
 })
 minetest.register_node("nations_flag:floor_red_c", {
@@ -153,11 +153,11 @@ minetest.register_node("nations_flag:floor_red_c", {
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
     selection_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
     collision_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
 })
 minetest.register_node("nations_flag:floor_blue", {
@@ -171,11 +171,11 @@ minetest.register_node("nations_flag:floor_blue", {
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
     selection_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
     collision_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
 })
 minetest.register_node("nations_flag:floor_blue_b", {
@@ -189,11 +189,11 @@ minetest.register_node("nations_flag:floor_blue_b", {
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
     selection_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
     collision_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
 })
 minetest.register_node("nations_flag:floor_blue_c", {
@@ -207,11 +207,11 @@ minetest.register_node("nations_flag:floor_blue_c", {
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
     selection_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
     collision_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
 })
 minetest.register_node("nations_flag:floor_yellow", {
@@ -225,11 +225,11 @@ minetest.register_node("nations_flag:floor_yellow", {
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
     selection_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
     collision_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
 })
 minetest.register_node("nations_flag:floor_yellow_b", {
@@ -243,11 +243,11 @@ minetest.register_node("nations_flag:floor_yellow_b", {
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
     selection_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
     collision_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
 })
 minetest.register_node("nations_flag:floor_yellow_c", {
@@ -261,10 +261,10 @@ minetest.register_node("nations_flag:floor_yellow_c", {
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
     selection_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
     collision_box = {
         type = "fixed",
-        fixed = { -0.166, -0.5, -0.5, 0.166, 6.0, 0.5 },
+        fixed = { -0.166, -0.5, -0.166, 0.166, 6.0, 0.166 },
     },
 })
