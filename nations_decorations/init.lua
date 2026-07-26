@@ -88,6 +88,24 @@ minetest.register_node("nations_decorations:logo", {
         fixed = {-0.5, -0.5, 0.4, 0.5, 0.5, 0.5},
     },
 })
+minetest.register_node("nations_decorations:logo", {
+    description = "Nations Logo",
+    tiles = {"nations_gold.png"},
+    drawtype = "mesh",
+    mesh = "nations.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    collision_box = {
+        type = "fixed",
+        fixed = {-0.5, -0.5, 0.4, 0.5, 0.5, 0.5},
+    },
+    selection_box = {
+        type = "fixed",
+        fixed = {-0.5, -0.5, 0.4, 0.5, 0.5, 0.5},
+    },
+})
 minetest.register_node("nations_decorations:pedestal", {
     description = "Pedestal",
     tiles = {"pedestal.png"},
@@ -366,7 +384,7 @@ minetest.register_node("nations_decorations:carpet_yellow_c", {
 })
 minetest.register_node("nations_decorations:coins_gold", {
     description = "Or",
-    tiles = {"coins_gold.png"},
+    tiles = {"nations_gold.png"},
     drawtype = "mesh",
     mesh = "coins_gold.obj",
     use_texture_alpha = "blend",
