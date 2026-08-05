@@ -492,7 +492,7 @@ minetest.register_node("nations_decorations:window_open", {
         type = "fixed",
         fixed = { -0.5, -0.5, -0.5, -0.375, 1.5, 0.5 }
     },
-    drop = "nations_decorations",
+    drop = "nations_decorations:window",
     on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
         node.name = "nations_decorations:window"
         minetest.set_node(pos, node)
