@@ -403,7 +403,7 @@ minetest.register_node("nations_decorations:coins_gold", {
 minetest.register_node("nations_decorations:half_tinbering", {
     description = "Colombage",
     tiles = {"half-tinbering.png"},
-    drawtype = "node",
+    drawtype = "nodebox",
     use_texture_alpha = "blend",
     paramtype = "light",
     paramtype2 = "facedir",
@@ -412,7 +412,7 @@ minetest.register_node("nations_decorations:half_tinbering", {
 minetest.register_node("nations_decorations:half_tinbering_a", {
     description = "Colombage",
     tiles = {"half-tinbering_a.png"},
-    drawtype = "node",
+    drawtype = "nodebox",
     use_texture_alpha = "blend",
     paramtype = "light",
     paramtype2 = "facedir",
@@ -421,7 +421,7 @@ minetest.register_node("nations_decorations:half_tinbering_a", {
 minetest.register_node("nations_decorations:half_tinbering_b", {
     description = "Colombage",
     tiles = {"half-tinbering_b.png"},
-    drawtype = "node",
+    drawtype = "nodebox",
     use_texture_alpha = "blend",
     paramtype = "light",
     paramtype2 = "facedir",
@@ -430,9 +430,170 @@ minetest.register_node("nations_decorations:half_tinbering_b", {
 minetest.register_node("nations_decorations:half_tinbering_c", {
     description = "Colombage",
     tiles = {"half-tinbering_c.png"},
-    drawtype = "node",
+    drawtype = "nodebox",
     use_texture_alpha = "blend",
     paramtype = "light",
     paramtype2 = "facedir",
     groups = {cracky = 3, oddly_breakable_by_hand = 3},
+})
+minetest.register_node("nations_decorations:window_edge", {
+    description = "Fenêtre",
+    tiles = {"window_edge.png"},
+    drawtype = "mesh",
+    mesh = "window_edge.obj",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, 0.4375, 0.5, 1.5, 0.5 }
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, 0.4375, 0.5, 1.5, 0.5 }
+    },
+})
+minetest.register_node("nations_decorations:window", {
+    description = "Fenêtre",
+    tiles = {"window.png"},
+    drawtype = "mesh",
+    mesh = "window.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 1.5, -0.375 }
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 1.5, -0.375 }
+    },
+    on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+        node.name = "nations_decorations:window_open"
+        minetest.set_node(pos, node)
+    end,
+})
+minetest.register_node("nations_decorations:window_open", {
+    description = "Fenêtre",
+    tiles = {"window.png"},
+    drawtype = "mesh",
+    mesh = "window_open.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, -0.375, 1.5, 0.5 }
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, -0.375, 1.5, 0.5 }
+    },
+    drop = "nations_decorations",
+    on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+        node.name = "nations_decorations:window"
+        minetest.set_node(pos, node)
+    end,
+})
+minetest.register_node("nations_decorations:door", {
+    description = "Porte",
+    tiles = {"door.png"},
+    drawtype = "mesh",
+    mesh = "door_close.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 1.5, -0.375 }
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 1.5, -0.375 }
+    },
+    on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+        node.name = "nations_decorations:door_open"
+        minetest.set_node(pos, node)
+    end,
+})
+minetest.register_node("nations_decorations:door_open", {
+    description = "Porte",
+    tiles = {"door.png"},
+    drawtype = "mesh",
+    mesh = "door_open.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3, not_in_creative_inventory = 1},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, -0.375, 1.5, 0.5 }
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, -0.375, 1.5, 0.5 }
+    },
+    drop = "nations_decorations:door",
+    on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+        node.name = "nations_decorations:door"
+        minetest.set_node(pos, node)
+    end,
+})
+minetest.register_node("nations_decorations:awnings_red", {
+    description = "Bannes rouge",
+    tiles = {"awnings.png^awnings_red.png"},
+    drawtype = "mesh",
+    mesh = "awnings.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 0.0, 0.5 }
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 0.0, 0.5 }
+    },
+})
+minetest.register_node("nations_decorations:awnings_blue", {
+    description = "Bannes bleu",
+    tiles = {"awnings.png^awnings_blue.png"},
+    drawtype = "mesh",
+    mesh = "awnings.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 0.0, 0.5 }
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 0.0, 0.5 }
+    },
+})
+minetest.register_node("nations_decorations:awnings_yellow", {
+    description = "Bannes jaune",
+    tiles = {"awnings.png^awnings_yellow.png"},
+    drawtype = "mesh",
+    mesh = "awnings.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    selection_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 0.0, 0.5 }
+    },
+    collision_box = {
+        type = "fixed",
+        fixed = { -0.5, -0.5, -0.5, 0.5, 0.0, 0.5 }
+    },
 })
