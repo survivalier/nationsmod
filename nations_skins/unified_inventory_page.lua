@@ -1,4 +1,4 @@
-local S = minetest.get_translator("skinsdb")
+local S = minetest.get_translator("nations_skins")
 
 unified_inventory.register_page("skins", {
 	get_formspec = function(player, perplayer_formspec)

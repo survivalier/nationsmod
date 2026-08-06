@@ -1,4 +1,4 @@
-local S = minetest.get_translator("skinsdb")
+local S = minetest.get_translator("nations_skins")
 
 -- generate the current formspec
 local function get_formspec(player, context)

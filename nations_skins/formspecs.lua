@@ -1,4 +1,4 @@
-local S = minetest.get_translator("skinsdb")
+local S = minetest.get_translator("nations_skins")
 local ui = minetest.global_exists("unified_inventory") and unified_inventory
 
 function skins.get_formspec_context(player)

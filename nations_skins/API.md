@@ -101,7 +101,7 @@ Could be redefined for dynamic preview texture generation
 
 ## skin:set_skin(player)
 Hook for dynamic skins updates on select. Is called in skins.set_player_skin()
-In skinsdb the default implementation for this function is empty.
+In nations_skins the default implementation for this function is empty.
 
 ## skin:apply_skin_to_player(player)
 Apply the skin to the player. Called in skins.update_player_skin() to update visuals
@@ -112,7 +112,7 @@ Add a meta information to the skin object
 Note: the information is not stored, therefore should be filled each time during skins registration
 
 ## skin:get_meta(key)
-The next metadata keys are filled or/and used interally in skinsdb framework
+The next metadata keys are filled or/and used interally in nations_skins framework
   - name - A name for the skin
   - author - The skin author
   - license - THe skin texture license

@@ -1,9 +1,9 @@
-# textdomain: skinsdb
+# textdomain: nations_skins
 [set] <skin key> | show [<skin key>] | list | list private | list public | [ui]=
 Show, list or set player's skin=Tunjukkan, senaraikan atau tetapkan kulit pemain
 Player not found=Pemain tidak dijumpai
 unknown command=perintah tidak diketahui
-see /help skinsdb for supported parameters=lihat /help skinsdb untuk parameter yang disokong
+see /help nations_skins for supported parameters=lihat /help nations_skins untuk parameter yang disokong
 skin set to=kulit ditetapkan kepada
 invalid skin=kulit tidak sah
 Requires skin key=

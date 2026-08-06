@@ -8,7 +8,7 @@ if not core.has_feature({
     dynamic_add_media_startup = true,
     dynamic_add_media_filepath = true,
 }) then
-	error("Skinsdb requires Luanti 5.9.0 or newer, please update!")
+	error("Nations_skins requires Luanti 5.9.0 or newer, please update!")
 end
 
 skins = {}
@@ -27,7 +27,6 @@ dofile(skins.modpath.."/skin_meta_api.lua")
 dofile(skins.modpath.."/api.lua")
 dofile(skins.modpath.."/skinlist.lua")
 dofile(skins.modpath.."/formspecs.lua")
-dofile(skins.modpath.."/chatcommands.lua")
 -- Unified inventory page/integration
 if minetest.get_modpath("unified_inventory") then
 	dofile(skins.modpath.."/unified_inventory_page.lua")
@@ -86,7 +85,7 @@ minetest.register_on_shutdown(function()
 end)
 
 -- See also: 3d_armor/init.lua
-player_api.register_model("skinsdb_3d_armor_character_5.b3d", {
+player_api.register_model("nations_skins_3d_armor_character_5.b3d", {
 	animation_speed = 30,
 	textures = {
 		"blank.png",

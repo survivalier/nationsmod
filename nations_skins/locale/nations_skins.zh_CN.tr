@@ -1,9 +1,9 @@
-# textdomain: skinsdb
+# textdomain: nations_skins
 [set] <skin key> | show [<skin key>] | list | list private | list public | [ui]=
 Show, list or set player's skin=显示，列出或者设置玩家的皮肤
 Player not found=玩家未找到
 unknown command=未知命令
-see /help skinsdb for supported parameters=有关skinsdb支持的参数，参见 /help
+see /help nations_skins for supported parameters=有关nations_skins支持的参数，参见 /help
 skin set to=皮肤设置为
 invalid skin=无效皮肤
 Requires skin key=

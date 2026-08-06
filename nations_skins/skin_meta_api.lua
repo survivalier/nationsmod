@@ -74,9 +74,9 @@ function skin_class:set_hand_from_texture()
 	hand_def.paramtype = "light"
 	hand_def.drawtype = "mesh"
 	if(self:get_meta("format") == "1.0") then
-		hand_def.mesh = "skinsdb_hand.b3d"
+		hand_def.mesh = "nations_skins_hand.b3d"
 	else
-		hand_def.mesh = "skinsdb_hand_18.b3d"
+		hand_def.mesh = "nations_skins_hand_18.b3d"
 	end
 	hand_def.use_texture_alpha = ALPHA_CLIP
 
@@ -127,26 +127,26 @@ function skin_class:get_preview()
 
 	-- Consistent on both sizes:
 	--Chest
-	skin = skin .. "([combine:16x32:-16,-12=" .. player_skin .. "^[mask:skindb_mask_chest.png)^"
+	skin = skin .. "([combine:16x32:-16,-12=" .. player_skin .. "^[mask:nations_skins_mask_chest.png)^"
 	--Head
-	skin = skin .. "([combine:16x32:-4,-8=" .. player_skin .. "^[mask:skindb_mask_head.png)^"
+	skin = skin .. "([combine:16x32:-4,-8=" .. player_skin .. "^[mask:nations_skins_mask_head.png)^"
 	--Hat
-	skin = skin .. "([combine:16x32:-36,-8=" .. player_skin .. "^[mask:skindb_mask_head.png)^"
+	skin = skin .. "([combine:16x32:-36,-8=" .. player_skin .. "^[mask:nations_skins_mask_head.png)^"
 	--Right Arm
-	skin = skin .. "([combine:16x32:-44,-12=" .. player_skin .. "^[mask:skindb_mask_rarm.png)^"
+	skin = skin .. "([combine:16x32:-44,-12=" .. player_skin .. "^[mask:nations_skins_mask_rarm.png)^"
 	--Right Leg
-	skin = skin .. "([combine:16x32:0,0=" .. player_skin .. "^[mask:skindb_mask_rleg.png)^"
+	skin = skin .. "([combine:16x32:0,0=" .. player_skin .. "^[mask:nations_skins_mask_rleg.png)^"
 
 	-- 64x64 skins have non-mirrored arms and legs
 	local left_arm
 	local left_leg
 
 	if self:get_meta("format") == "1.8" then
-		left_arm = "([combine:16x32:-24,-44=" .. player_skin .. "^[mask:(skindb_mask_rarm.png^[transformFX))^"
-		left_leg = "([combine:16x32:-12,-32=" .. player_skin .. "^[mask:(skindb_mask_rleg.png^[transformFX))^"
+		left_arm = "([combine:16x32:-24,-44=" .. player_skin .. "^[mask:(nations_skins_mask_rarm.png^[transformFX))^"
+		left_leg = "([combine:16x32:-12,-32=" .. player_skin .. "^[mask:(nations_skins_mask_rleg.png^[transformFX))^"
 	else
-		left_arm = "([combine:16x32:-44,-12=" .. player_skin .. "^[mask:skindb_mask_rarm.png^[transformFX)^"
-		left_leg = "([combine:16x32:0,0=" .. player_skin .. "^[mask:skindb_mask_rleg.png^[transformFX)^"
+		left_arm = "([combine:16x32:-44,-12=" .. player_skin .. "^[mask:nations_skins_mask_rarm.png^[transformFX)^"
+		left_leg = "([combine:16x32:0,0=" .. player_skin .. "^[mask:nations_skins_mask_rleg.png^[transformFX)^"
 	end
 
 	-- Left Arm
@@ -159,19 +159,19 @@ function skin_class:get_preview()
 		-- client-side out-of-bounds "[combine" warnings.
 
 		--Chest Overlay
-		skin = skin .. "([combine:16x32:-16,-28=" .. player_skin .. "^[mask:skindb_mask_chest.png)^"
+		skin = skin .. "([combine:16x32:-16,-28=" .. player_skin .. "^[mask:nations_skins_mask_chest.png)^"
 		--Right Arm Overlay
-		skin = skin .. "([combine:16x32:-44,-28=" .. player_skin .. "^[mask:skindb_mask_rarm.png)^"
+		skin = skin .. "([combine:16x32:-44,-28=" .. player_skin .. "^[mask:nations_skins_mask_rarm.png)^"
 		--Right Leg Overlay
-		skin = skin .. "([combine:16x32:0,-16=" .. player_skin .. "^[mask:skindb_mask_rleg.png)^"
+		skin = skin .. "([combine:16x32:0,-16=" .. player_skin .. "^[mask:nations_skins_mask_rleg.png)^"
 		--Left Arm Overlay
-		skin = skin .. "([combine:16x32:-40,-44=" .. player_skin .. "^[mask:(skindb_mask_rarm.png^[transformFX))^"
+		skin = skin .. "([combine:16x32:-40,-44=" .. player_skin .. "^[mask:(nations_skins_mask_rarm.png^[transformFX))^"
 		--Left Leg Overlay
-		skin = skin .. "([combine:16x32:4,-32=" .. player_skin .. "^[mask:(skindb_mask_rleg.png^[transformFX))"
+		skin = skin .. "([combine:16x32:4,-32=" .. player_skin .. "^[mask:(nations_skins_mask_rleg.png^[transformFX))"
 	end
 
 	-- Full Preview
-	skin = "(((" .. skin .. ")^[resize:64x128)^[mask:skindb_transform.png)"
+	skin = "(((" .. skin .. ")^[resize:64x128)^[mask:nations_skins_transform.png)"
 
 	return skin
 end
@@ -191,7 +191,7 @@ function skin_class:apply_skin_to_player(player)
 	local playername = player:get_player_name()
 	local ver = self:get_meta("format") or "1.0"
 
-	player_api.set_model(player, "skinsdb_3d_armor_character_5.b3d")
+	player_api.set_model(player, "nations_skins_3d_armor_character_5.b3d")
 
 	local v10_texture = "blank.png"
 	local v18_texture = "blank.png"
@@ -244,9 +244,9 @@ function skin_class:apply_skin_to_player(player)
 	local hand = self:get_hand()
 	if has_hand_monoid then
 		if hand then
-			hand_monoid.monoid:add_change(player, {name = hand}, "skinsdb:hand")
+			hand_monoid.monoid:add_change(player, {name = hand}, "nations_skins:hand")
 		else
-			hand_monoid.monoid:del_change(player, "skinsdb:hand")
+			hand_monoid.monoid:del_change(player, "nations_skins:hand")
 		end
 	else
 		if hand then

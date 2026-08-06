@@ -1,9 +1,9 @@
-# textdomain: skinsdb
+# textdomain: nations_skins
 [set] <skin key> | show [<skin key>] | list | list private | list public | [ui]=
 Show, list or set player's skin=
 Player not found=
 unknown command=
-see /help skinsdb for supported parameters=
+see /help nations_skins for supported parameters=
 skin set to=
 invalid skin=
 Requires skin key=

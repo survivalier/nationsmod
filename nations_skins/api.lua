@@ -13,10 +13,10 @@ end
 function skins.get_player_skin(player)
 	local player_name = player:get_player_name()
 	local meta = player:get_meta()
-	if meta:get("skinsdb:skin_key") then
+	if meta:get("nations_skins:skin_key") then
 		-- Move player data prior July 2018 to mod storage
-		storage:set_string(player_name, meta:get_string("skinsdb:skin_key"))
-		meta:set_string("skinsdb:skin_key", "")
+		storage:set_string(player_name, meta:get_string("nations_skins:skin_key"))
+		meta:set_string("nations_skins:skin_key", "")
 	end
 
 	local skin_name = storage:get_string(player_name)

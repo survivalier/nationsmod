@@ -1,9 +1,9 @@
-# textdomain: skinsdb
+# textdomain: nations_skins
 [set] <skin key> | show [<skin key>] | list | list private | list public | [ui]=
 Show, list or set player's skin=Mostrar, listar ou definir a skin do jogador
 Player not found=Jogador não encontrado
 unknown command=Comando desconhecido
-see /help skinsdb for supported parameters= consulte /help skinsdb para obter os parâmetros suportados
+see /help nations_skins for supported parameters= consulte /help nations_skins para obter os parâmetros suportados
 skin set to=Aparência definida para
 invalid skin=Aparência inválida
 Requires skin key=Requer chave de aparência

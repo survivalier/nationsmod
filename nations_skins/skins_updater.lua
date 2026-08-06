@@ -1,7 +1,7 @@
 -- Skins update script
 
 local http = ...
-local S = minetest.get_translator("skinsdb")
+local S = minetest.get_translator("nations_skins")
 local _ID_ = "Lua Skins Updater"
 
 local internal = {}
@@ -9,10 +9,10 @@ internal.errors = {}
 
 if not http then
 	internal.errors[#internal.errors + 1] = "http api is required. " ..
-		"Please add skinsdb to `secure.http_mods` in minetest.conf"
+		"Please add nations_skins to `secure.http_mods` in minetest.conf"
 end
 
-minetest.register_chatcommand("skinsdb_download_skins", {
+minetest.register_chatcommand("nations_skins_download_skins", {
 	params = S("<skindb start page> <amount of pages>"),
 	description = S("Downloads the specified range of skins and shuts down the server"),
 	privs = {server=true},
@@ -40,7 +40,7 @@ if #internal.errors > 0 then
 end
 
 -- http://minetest.fensta.bplaced.net/api/apidoku.md
-local root_url = "http://skinsdb.terraqueststudios.net"
+local root_url = "http://nations_skins.terraqueststudios.net"
 local page_url = root_url .. "/api/v1/content?client=mod&page=%i" -- [1] = Page#
 
 local download_path = skins.storage_path
@@ -121,7 +121,7 @@ internal.fetch_function = function(pages_total, start_page, len)
 				assert(skin.type == "image/png")
 				assert(skin.id ~= "")
 
-				if skin.id ~= 1 then -- Skin 1 is bundled with skinsdb
+				if skin.id ~= 1 then -- Skin 1 is bundled with nations_skins
 					save_single_skin(skin)
 				end
 			end

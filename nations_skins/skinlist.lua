@@ -47,7 +47,7 @@ function skins.register_skin(path, filename)
 		sort_id = 0 + (tonumber(splits[2]) or 0)
 
 		if #splits > 1 and sep == "_" then
-			minetest.log("warning", "skinsdb: The skin name '" .. filename .. "' is ambigous." ..
+			minetest.log("warning", "nations_skins: The skin name '" .. filename .. "' is ambigous." ..
 				" Please use the separator '.' to lock it down to the correct player name.")
 		end
 	else -- Public skin "character*"
@@ -133,7 +133,7 @@ function skins.__fuzzy_match_skin_name(player_name, skin_name, be_noisy)
 	end
 
 	if be_noisy then
-		minetest.log("warning", "skinsdb: cannot find matching skin '" ..
+		minetest.log("warning", "nations_skins: cannot find matching skin '" ..
 			skin_name .. "' for player '" .. player_name .. "'.")
 	end
 end

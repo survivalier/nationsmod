@@ -597,3 +597,14 @@ minetest.register_node("nations_decorations:awnings_yellow", {
         fixed = { -0.5, -0.5, -0.5, 0.5, 0.0, 0.5 }
     },
 })
+minetest.register_node("nations_decorations:steel_support", {
+    description = "Support en métal",
+    tiles = {"steel_support.png"},
+    drawtype = "mesh",
+    mesh = "steel_support.obj",
+    use_texture_alpha = "blend",
+    paramtype = "light",
+    paramtype2 = "facedir",
+    groups = {cracky = 3, oddly_breakable_by_hand = 3},
+    on_place = minetest.rotate_node
+})
